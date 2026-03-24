@@ -161,3 +161,36 @@ This project is licensed under the MIT License.
 ---
 
 *🚧 This project is currently in active development.*
+
+## 🚀 Setup Instructions
+
+1. Clone the repo
+```bash
+   git clone https://github.com/dishank31/api-dependency-analyzer.git
+   cd api-dependency-analyzer
+```
+
+2. Create and activate virtual environment
+```bash
+   py -3.11 -m venv venv
+   .\venv\Scripts\Activate.ps1   # Windows PowerShell
+```
+
+3. Install dependencies
+```bash
+   pip install -r requirements.txt
+```
+
+4. Configure environment
+```bash
+   copy .env.example .env
+   # Edit .env with your real values
+```
+
+5. Run the server
+```bash
+   uvicorn src.main:app --reload
+```
+
+6. Open API docs
+   → http://localhost:8000/docs
