@@ -1,12 +1,19 @@
 # src/main.py
 from fastapi import FastAPI
 from src.config import settings
+from src.routes import auth, services, endpoints, ingestion, graph, analysis
 
 app = FastAPI(
     title="API Dependency Graph Analyzer",
     description="Tracks microservice dependencies and predicts breaking changes",
     version="1.0.0"
 )
+
+app.include_router(auth.router)
+app.include_router(services.router)
+app.include_router(endpoints.router)
+app.include_router(graph.router)
+app.include_router(analysis.router)
 
 @app.get("/")
 def root():
