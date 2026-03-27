@@ -194,3 +194,16 @@ This project is licensed under the MIT License.
 
 6. Open API docs
    → http://localhost:8000/docs
+
+   ## Database Setup
+
+Uses [Supabase](https://supabase.com) (hosted PostgreSQL).
+
+1. Create a Supabase project at supabase.com  
+2. Copy the connection string from **Settings → Database → Connection string (URI)**  
+3. Add to `.env`:
+```
+   DATABASE_URL=postgresql://postgres:[password]@[host]:5432/postgres
+```
+4. Run connection test: `python test_db_connection.py`  
+5. Run migrations: `python -m migrations.run`
