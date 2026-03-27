@@ -2,12 +2,20 @@
 from fastapi import FastAPI
 from src.config import settings
 from src.routes import auth, services, endpoints, ingestion, graph, analysis
+from src.middleware.error_handler import (
+    global_exception_handler,
+    app_exception_handler,
+    AppException
+)
 
 app = FastAPI(
     title="API Dependency Graph Analyzer",
     description="Tracks microservice dependencies and predicts breaking changes",
     version="1.0.0"
 )
+
+app.add_exception_handler(Exception, global_exception_handler)
+app.add_exception_handler(AppException, app_exception_handler)
 
 app.include_router(auth.router)
 app.include_router(services.router)
