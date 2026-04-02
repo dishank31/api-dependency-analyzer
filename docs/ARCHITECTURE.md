@@ -83,3 +83,10 @@ Client → POST /v1/analyze/change → JWT Middleware → Analysis Route
 | Auth | JWT | Stateless — no session storage needed |
 | ORM | SQLAlchemy | Prevents SQL injection, easier migrations |
 | Graph algorithm | BFS | Finds ALL downstream consumers level by level |
+
+
+## Database
+- PostgreSQL hosted on Supabase, 7 tables
+- ER diagram: `docs/diagrams/er-diagram.png`
+- Migrations in `migrations/` folder
+- Run: `python -m migrations.run`

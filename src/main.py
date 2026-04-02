@@ -7,6 +7,9 @@ from src.middleware.error_handler import (
     app_exception_handler,
     AppException
 )
+from src.utils.db import engine
+from sqlalchemy import text
+from fastapi.responses import JSONResponse
 
 app = FastAPI(
     title="API Dependency Graph Analyzer",
@@ -35,8 +38,12 @@ def root():
 
 @app.get("/health")
 def health_check():
-    return {
-        "status": "ok",
-        "service": "api-dependency-analyzer",
-        "version": "1.0.0"
-    }
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+        return {"status": "ok", "database": "connected"}
+    except Exception:
+        return JSONResponse(
+            status_code=503,
+            content={"status": "error", "database": "disconnected"}
+        )
